@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b63f6"><title>Associate Daily Scan</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#f3f6fb;color:#142033;font-family:Inter,Arial,sans-serif}.app{max-width:620px;margin:auto;padding:14px 14px 34px}.top{background:#10213d;color:#fff;border-radius:20px;padding:18px;margin-bottom:12px}.topline{display:flex;justify-content:space-between;gap:10px;align-items:center}.top h1{font-size:21px;margin:0}.top small{color:#b9c8dc}.badge{background:#ffffff18;border:1px solid #ffffff24;border-radius:20px;padding:7px 10px;font-size:11px;font-weight:800}.card{background:#fff;border:1px solid #dfe6ef;border-radius:17px;padding:15px;margin-bottom:12px;box-shadow:0 6px 20px #1420330b}h2,h3{margin:0 0 10px}.label{display:block;font-size:10px;font-weight:800;color:#66758a;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choice,.btn{border:0;border-radius:11px;padding:12px;font-weight:800;font-size:14px}.choice{background:#edf2f7;color:#26354b}.choice.on{background:#0b63f6;color:#fff}.btn{background:#0b63f6;color:#fff;width:100%;cursor:pointer}.btn.secondary{background:#edf2f7;color:#26354b}.btn.danger{background:#fff0ef;color:#b42318}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}input,select{width:100%;padding:12px;border:1px solid #cdd7e4;border-radius:10px;font-size:16px;background:#fff;color:#142033}#reader{display:none;background:#111;border-radius:14px;overflow:hidden;margin-top:10px}.person{display:none;margin-top:10px;padding:13px;background:#f5f9ff;border:1px solid #d9e7fb;border-radius:12px}.person .name{font-size:18px;font-weight:900}.locked{color:#66758a;font-size:12px;margin-top:7px}.another{background:#fff7ed;border-color:#fed7aa}.msg{text-align:center;min-height:21px;margin:9px 0;font-weight:800}.ok{color:#137333}.bad{color:#b42318}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.stat{padding:11px;border:1px solid #e1e7ef;border-radius:11px}.stat span{font-size:10px;color:#68758a;font-weight:800}.stat b{display:block;font-size:23px;margin-top:4px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse}th,td{padding:8px 5px;border-bottom:1px solid #edf0f4;font-size:11px;text-align:left;white-space:nowrap}th{font-size:9px;color:#68758a}.modal{position:fixed;inset:0;background:#071326c7;display:none;align-items:center;justify-content:center;padding:20px;z-index:50}.modalbox{width:min(390px,100%);background:#fff;border-radius:20px;padding:25px;text-align:center}.icon{font-size:48px}.modalbox p{color:#68758a;line-height:1.45}.login{position:fixed;inset:0;background:#f3f6fb;z-index:100;display:grid;place-items:center;padding:18px}.loginbox{width:min(420px,100%);background:#fff;border-radius:21px;padding:24px;box-shadow:0 16px 55px #14203318}.loginbox h2{margin:0 0 4px}.hint{font-size:12px;color:#68758a;margin-bottom:16px}.admin{display:none}.tabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px}.tab{padding:10px;border:0;border-radius:9px;background:#edf2f7;font-weight:800}.tab.on{background:#0b63f6;color:#fff}.panel{display:none}.panel.on{display:block}.masterrow{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid #edf0f4;font-size:11px}.masterrow button{border:0;background:#fff0ef;color:#b42318;border-radius:7px;padding:6px}.mini{font-size:11px;color:#68758a}.empty{text-align:center;color:#68758a;padding:15px}.settingsrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:7px 0}.scannerchip{padding:8px 10px;border:1px solid #dfe6ef;border-radius:9px;background:#f7f9fc;font-size:12px;display:flex;justify-content:space-between;align-items:center}.scannerchip button{border:0;background:#fff0ef;color:#b42318;border-radius:7px;padding:5px 8px;font-weight:800}@media(max-width:390px){.settingsrow{grid-template-columns:1fr}}
+*{box-sizing:border-box}body{margin:0;background:#f3f6fb;color:#142033;font-family:Inter,Arial,sans-serif}.app{max-width:620px;margin:auto;padding:14px 14px 34px}.top{background:#10213d;color:#fff;border-radius:20px;padding:18px;margin-bottom:12px}.topline{display:flex;justify-content:space-between;gap:10px;align-items:center}.top h1{font-size:21px;margin:0}.top small{color:#b9c8dc}.badge{background:#ffffff18;border:1px solid #ffffff24;border-radius:20px;padding:7px 10px;font-size:11px;font-weight:800}.card{background:#fff;border:1px solid #dfe6ef;border-radius:17px;padding:15px;margin-bottom:12px;box-shadow:0 6px 20px #1420330b}h2,h3{margin:0 0 10px}.label{display:block;font-size:10px;font-weight:800;color:#66758a;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choice,.btn{border:0;border-radius:11px;padding:12px;font-weight:800;font-size:14px}.choice{background:#edf2f7;color:#26354b}.choice.on{background:#0b63f6;color:#fff}.btn{background:#0b63f6;color:#fff;width:100%;cursor:pointer}.btn.secondary{background:#edf2f7;color:#26354b}.btn.danger{background:#fff0ef;color:#b42318}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}input,select{width:100%;padding:12px;border:1px solid #cdd7e4;border-radius:10px;font-size:16px;background:#fff;color:#142033}#reader{display:none;background:#111;border-radius:14px;overflow:hidden;margin-top:10px}.person{display:none;margin-top:10px;padding:13px;background:#f5f9ff;border:1px solid #d9e7fb;border-radius:12px}.person .name{font-size:18px;font-weight:900}.locked{color:#66758a;font-size:12px;margin-top:7px}.another{background:#fff7ed;border-color:#fed7aa}.msg{text-align:center;min-height:21px;margin:9px 0;font-weight:800}.ok{color:#137333}.bad{color:#b42318}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.stat{padding:11px;border:1px solid #e1e7ef;border-radius:11px}.stat span{font-size:10px;color:#68758a;font-weight:800}.stat b{display:block;font-size:23px;margin-top:4px} .daily-summary-card{padding:10px 12px;margin-bottom:10px}.daily-summary-card h3{font-size:14px;margin:0 0 7px}.daily-summary-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.daily-summary-card .stat{padding:6px 7px;border-radius:8px}.daily-summary-card .stat span{font-size:8px;line-height:1.2;display:block}.daily-summary-card .stat b{font-size:18px;margin-top:2px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse}th,td{padding:8px 5px;border-bottom:1px solid #edf0f4;font-size:11px;text-align:left;white-space:nowrap}th{font-size:9px;color:#68758a}.modal{position:fixed;inset:0;background:#071326c7;display:none;align-items:center;justify-content:center;padding:20px;z-index:50}.modalbox{width:min(390px,100%);background:#fff;border-radius:20px;padding:25px;text-align:center}.icon{font-size:48px}.modalbox p{color:#68758a;line-height:1.45}.login{position:fixed;inset:0;background:#f3f6fb;z-index:100;display:grid;place-items:center;padding:18px}.loginbox{width:min(420px,100%);background:#fff;border-radius:21px;padding:24px;box-shadow:0 16px 55px #14203318}.loginbox h2{margin:0 0 4px}.hint{font-size:12px;color:#68758a;margin-bottom:16px}.admin{display:none}.tabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px}.tab{padding:10px;border:0;border-radius:9px;background:#edf2f7;font-weight:800}.tab.on{background:#0b63f6;color:#fff}.panel{display:none}.panel.on{display:block}.masterrow{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid #edf0f4;font-size:11px}.masterrow button{border:0;background:#fff0ef;color:#b42318;border-radius:7px;padding:6px}.mini{font-size:11px;color:#68758a}.empty{text-align:center;color:#68758a;padding:15px}.settingsrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:7px 0}.scannerchip{padding:8px 10px;border:1px solid #dfe6ef;border-radius:9px;background:#f7f9fc;font-size:12px;display:flex;justify-content:space-between;align-items:center}.scannerchip button{border:0;background:#fff0ef;color:#b42318;border-radius:7px;padding:5px 8px;font-weight:800}@media(max-width:390px){.settingsrow{grid-template-columns:1fr}}
 
 /* Shift themes */
 body.day-theme{background:#f3f6fb;color:#142033}
@@ -21,7 +21,7 @@ body.night-theme .modalbox{background:#111b2e;color:#e8eef7}
 body.night-theme .modalbox p{color:#aebbd0}
 body.night-theme .login{background:#0b1220}
 @media(max-width:390px){.grid{grid-template-columns:1fr}.top h1{font-size:18px}}
-</style><script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-database-compat.js"></script></head><body>
+</style><script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-database-compat.js"></script><script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-storage-compat.js"></script></head><body>
 <div id="login" class="login" style="display:none"><div class="loginbox">
 <h2>Associate Daily Scan</h2><div class="hint">Mobile scanning • Admin / Scanner login</div>
 <label class="label">Login Type</label>
@@ -40,12 +40,12 @@ body.night-theme .login{background:#0b1220}
 <div class="card"><h3>Enter Associate ID</h3><div class="mini">Camera removed. Employee ID manually enter karein.</div><input id="loginId" style="margin-top:9px;text-align:center;font-weight:900" placeholder="Enter Emp. Id" oninput="lookup()"><div class="card" style="margin:10px 0 0;padding:11px;background:#f8fafc">
 <button type="button" class="btn secondary" onclick="toggleHHD()" style="text-align:left">📱 HHD Details <span id="hhdArrow">＋</span></button>
 <div id="hhdBox" style="display:none;margin-top:9px"><div class="grid">
-<div><label class="label">HHD ID / Number</label><input id="hhdId" placeholder="Enter HHD ID"></div>
-<div><label class="label">HHD Details</label><input id="hhdDetails" placeholder="Model / details"></div>
-</div></div></div>
-<div id="person" class="person"></div><div class="actions"><button class="btn" onclick="saveEntry()">✓ Save Entry</button><button class="btn secondary" onclick="clearEntry()">Clear</button></div><div id="msg" class="msg"></div></div>
-<div class="card"><h3>Daily Summary</h3><div class="stats"><div class="stat"><span>TOTAL</span><b id="total">0</b></div><div class="stat"><span>QUALITY SUPERVISOR</span><b id="s1">0</b></div><div class="stat"><span>SEGREGATION</span><b id="s2">0</b></div><div class="stat"><span>QUALITY ASSOCIATE</span><b id="s3">0</b></div><div class="stat"><span>QUALITY DEO</span><b id="s4">0</b></div></div></div>
-<div class="card"><h3>Today's Entries</h3><div class="tablewrap"><table><thead><tr><th>Time</th><th>Emp ID</th><th>Name</th><th>Selected</th><th>Actual Designation</th><th>Shift</th><th>Scanner</th><th>HHD ID</th><th>HHD Details</th></tr></thead><tbody id="rows"></tbody></table></div></div>
+<div><label class="label">HHD ID / Number</label><input id="hhdId" placeholder="Enter HHD ID" oninput="updateHHDPhotosVisibility()"></div>
+<div><label class="label">HHD Details</label><input id="hhdDetails" placeholder="Model / details" oninput="updateHHDPhotosVisibility()"></div>
+</div><div id="hhdPhotosBox" style="display:none;margin-top:10px"><div class="mini" style="margin-bottom:7px">HHD ID / Details filled hone par optional photos add karein. Dono photos mandatory nahi hain.</div><div class="grid"><div><label class="label">A. Front Side Photo (Optional)</label><input id="hhdFrontPhoto" type="file" accept="image/*" capture="environment" onchange="previewHHDPhoto('front')" style="padding:8px;font-size:12px"><img id="hhdFrontPreview" style="display:none;width:100%;max-height:130px;object-fit:contain;margin-top:6px;border-radius:8px"></div><div><label class="label">B. Back Side Photo (Optional)</label><input id="hhdBackPhoto" type="file" accept="image/*" capture="environment" onchange="previewHHDPhoto('back')" style="padding:8px;font-size:12px"><img id="hhdBackPreview" style="display:none;width:100%;max-height:130px;object-fit:contain;margin-top:6px;border-radius:8px"></div></div></div></div></div>
+<div id="person" class="person"></div><div class="actions"><button id="saveEntryBtn" class="btn" onclick="saveEntry()">✓ Save Entry</button><button class="btn secondary" onclick="clearEntry()">Clear</button></div><div id="msg" class="msg"></div><div id="shiftEndArea" style="display:none;margin-top:12px;border:1px solid #cbd5e1;border-radius:10px;padding:12px;background:#f8fafc"><h3 style="margin:0 0 8px">🌙 Shift End</h3><div class="mini" id="shiftEndHhdText">HHD details</div><div style="margin-top:10px"><label class="label" for="shiftEndRemarks">Shift End Remarks</label><textarea id="shiftEndRemarks" rows="3" placeholder="Shift end remarks yahan likhein..." style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;resize:vertical"></textarea></div><div class="actions"><button class="btn" onclick="saveShiftEnd()">✓ Save Shift End</button><button class="btn secondary" onclick="$('shiftEndArea').style.display='none'">Cancel</button></div></div></div>
+<div class="card daily-summary-card"><h3>Daily Summary</h3><div class="stats daily-summary-stats"><div class="stat"><span>TOTAL</span><b id="total">0</b></div><div class="stat"><span>QUALITY SUPERVISOR</span><b id="s1">0</b></div><div class="stat"><span>SEGREGATION</span><b id="s2">0</b></div><div class="stat"><span>QUALITY ASSOCIATE</span><b id="s3">0</b></div><div class="stat"><span>QUALITY DEO</span><b id="s4">0</b></div></div></div>
+<div class="card"><button id="toggleTodayEntries" type="button" class="btn secondary" style="width:100%;text-align:left" onclick="toggleTodayEntries()">＋ Today's Entries (Show)</button><div id="todayEntriesPanel" style="display:none;margin-top:10px"><label class="label" for="entrySearch">🔎 Search Entry</label><input id="entrySearch" type="search" placeholder="Emp ID, name, HHD ID, details or scanner name" oninput="loadAll()" style="margin:5px 0 10px;width:100%;box-sizing:border-box"><div class="tablewrap"><table><thead><tr><th>Time</th><th>Emp ID</th><th>Name</th><th>Selected</th><th>Actual Designation</th><th>Shift</th><th>Scanner</th><th>HHD ID</th><th>HHD Details</th><th>HHD Photos</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table></div></div></div>
 <div id="adminArea" class="admin"><div class="card">
 <div class="tabs">
 <button class="tab on" onclick="tab('dashboard',this)">Dashboard</button>
@@ -65,7 +65,7 @@ body.night-theme .login{background:#0b1220}
 <div class="grid"><input id="reportDate" type="date"><button class="btn" onclick="exportDateCSV()">⬇ Download Date Wise</button></div></div>
 <div class="card" style="padding:12px;background:#f8fafc"><b>📆 Monthly Data</b><div class="mini" style="margin:5px 0 8px">Selected month ki saari entries ek CSV file me download karein.</div>
 <div class="grid"><input id="month" type="month"><button class="btn" onclick="exportMonthlyCSV()">⬇ Download Monthly</button></div></div>
-<div class="mini" style="margin-top:8px">Files include Date, Time, Emp. ID, Employee Name, Selected Category, Actual Designation, Shift, Supervisor / DEO Name, HHD ID and HHD Details.</div></div>
+<div class="mini" style="margin-top:8px">Files include Date, Time, Emp. ID, Employee Name, Selected Category, Actual Designation, Shift, Supervisor / DEO Name, HHD ID, HHD Details and HHD Photo URLs.</div></div>
 <div id="settings" class="panel"><h3>Admin Settings</h3>
 <div class="card" style="padding:12px;background:#eef7ff;border-color:#cfe3ff"><b>☁ Firebase Real-Time Sync</b><div class="mini" style="margin:5px 0 8px">Paste the Firebase Web App config JSON here. This config is saved only in this browser. Firebase Realtime Database synchronizes records across connected phones.</div><textarea id="firebaseConfigBox" style="width:100%;min-height:150px;padding:10px;border:1px solid #cdd7e4;border-radius:10px;font-family:monospace;font-size:12px" placeholder='{"apiKey":"...","authDomain":"...","databaseURL":"https://...","projectId":"...","storageBucket":"...","messagingSenderId":"...","appId":"..."}'></textarea><div class="actions"><button class="btn" onclick="saveFirebaseConfig()">Save & Connect</button><button class="btn secondary" onclick="resetFirebaseConfig()">Reset Cloud Config</button></div><div id="firebaseMsg" class="msg"></div><div class="mini">Firebase Console → Project settings → Your apps → Web app → Config. After creating Realtime Database, add its <b>databaseURL</b> here. Also enable Authentication → Anonymous.</div></div>
 <div class="card" style="padding:12px;background:#f8fafc"><b>Change Admin Password</b>
@@ -94,6 +94,8 @@ if(!state.auth.scannerPassword)state.auth.scannerPassword='1234';
 if(!Array.isArray(state.auth.scannerNames)||!state.auth.scannerNames.length)state.auth.scannerNames=DEFAULT_SCANNERS.slice();
 if(!state.master)state.master=Object.fromEntries(BASE_MASTER.map(x=>[x.id,x]));
 let shift='Day',cat='Quality Supervisor',assoc=null,scanner=null,userRole='',currentScannerName='';
+let editingEntryKey=null;
+let pendingPhotoUrls={front:null,back:null};
 
 const $=id=>document.getElementById(id);
 $('date').value=new Date().toISOString().slice(0,10);$('reportDate').value=$('date').value;$('month').value=new Date().toISOString().slice(0,7);
@@ -135,7 +137,7 @@ async function initCloud(){
     if(!cloudListening){
       cloudListening=true;
       root.child('entries').on('value',snap=>{
-        const obj=snap.val()||{}; state.entries=Object.values(obj); persist(); loadAll();
+        const obj=snap.val()||{}; state.entries=Object.entries(obj).map(([key,value])=>({...value,_key:key})); persist(); loadAll();
       });
       root.child('auth/scannerNames').on('value',snap=>{
         const raw=snap.val();
@@ -147,20 +149,54 @@ async function initCloud(){
 }
 async function cloudAddEntry(entry){
   if(!cloudReady||!cloudDb)throw new Error('Firebase is not connected');
-  // Atomic database-level duplicate check: one Associate ID per date across all users,
-  // regardless of shift/category. A transaction serializes simultaneous saves from phones.
   const ref=cloudDb.ref('associate_daily_scan_v4/entries');
+  const newKey=ref.push().key;
   const result=await ref.transaction(current=>{
     const entries=current&&typeof current==='object'?current:{};
     const duplicate=Object.values(entries).some(x=>x&&String(x.id??'').trim()===String(entry.id).trim()&&String(x.date??'')===String(entry.date));
-    if(duplicate)return; // abort transaction; no duplicate write
-    const key=ref.push().key;
-    entries[key]=entry;
+    if(duplicate)return;
+    entries[newKey]=entry;
+    return entries;
+  },undefined,false);
+  if(!result.committed)throw new Error('Duplicate Entry');
+  return newKey;
+}
+async function cloudUpdateEntry(key,entry){
+  if(!cloudReady||!cloudDb||!key)throw new Error('Firebase is not connected');
+  const root=cloudDb.ref('associate_daily_scan_v4/entries');
+  const result=await root.transaction(current=>{
+    const entries=current&&typeof current==='object'?current:{};
+    if(!entries[key])return;
+    const duplicate=Object.entries(entries).some(([k,x])=>k!==key&&x&&String(x.id??'').trim()===String(entry.id).trim()&&String(x.date??'')===String(entry.date));
+    if(duplicate)return;
+    entries[key]={...entry,time:entries[key].time||entry.time,updatedAt:new Date().toISOString(),updatedBy:currentScannerName||'User'};
     return entries;
   },undefined,false);
   if(!result.committed)throw new Error('Duplicate Entry');
   return true;
 }
+async function uploadHHDPhoto(file,side,entryId){
+  if(!file)return null;
+  if(!window.firebase||!firebase.storage)throw new Error('Firebase Storage SDK is unavailable');
+  const storage=firebase.storage();
+  const safe=String(entryId||'hhd').replace(/[^a-zA-Z0-9_-]/g,'_');
+  const path='associate_daily_scan_v4/hhdPhotos/'+safe+'/'+side+'_'+Date.now()+'_'+file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+  const snap=await storage.ref(path).put(file);
+  return await snap.ref.getDownloadURL();
+}
+function updateHHDPhotosVisibility(){
+  const showPhotos=!!(($('hhdId')?.value||'').trim()||($('hhdDetails')?.value||'').trim());
+  const box=$('hhdPhotosBox');if(box)box.style.display=showPhotos?'block':'none';
+  if(!showPhotos){['hhdFrontPhoto','hhdBackPhoto'].forEach(id=>{if($(id))$(id).value=''});pendingPhotoUrls={front:null,back:null};['hhdFrontPreview','hhdBackPreview'].forEach(id=>{if($(id)){ $(id).src='';$(id).style.display='none';}})}
+}
+function previewHHDPhoto(side){
+  const input=$(side==='front'?'hhdFrontPhoto':'hhdBackPhoto'),img=$(side==='front'?'hhdFrontPreview':'hhdBackPreview');
+  const file=input?.files?.[0];if(!file||!img)return;
+  if(!file.type.startsWith('image/')){alert('Please select an image file.');input.value='';return}
+  if(file.size>5*1024*1024){alert('Photo 5 MB se chhoti honi chahiye.');input.value='';return}
+  img.src=URL.createObjectURL(file);img.style.display='block';
+}
+
 async function cloudDeleteEntry(key){if(cloudReady&&cloudDb)await cloudDb.ref('associate_daily_scan_v4/entries/'+key).remove()}
 
 function populateScannerNames(){
@@ -215,29 +251,64 @@ function toggleHHD(){
   else{box.classList.add('hhd-open');box.style.display='block';if(arrow)arrow.textContent='−';}
 }
 async function saveEntry(){
-  let id=$('loginId').value.trim(); if(!id){show('Please scan Emp. Id.','bad');return false}
+  let id=$('loginId').value.trim(); if(!id){show('Please enter Emp. Id.','bad');return false}
   assoc=state.master[id]; if(!assoc){show('Emp. Id Master Data mein nahi mila.','bad');return false}
   if(String(assoc.status).toLowerCase()!=='active'){show('Associate inactive hai. Entry block ki gayi.','bad');return false}
   if(!cloudReady){show('⚠ Firebase LIVE nahi hai. Internet/Firebase connection check karein.','bad');return false}
-  let d=$('date').value,dup=state.entries.some(x=>String(x.id??'').trim()===String(id).trim()&&x.date===d);
+  let d=$('date').value,dup=state.entries.some(x=>x._key!==editingEntryKey&&String(x.id??'').trim()===String(id).trim()&&x.date===d);
   if(dup){$('dup').style.display='flex';return false}
   const anotherDept=!CATS.includes(assoc.designation);
-  const entry={date:d,time:new Date().toISOString(),id,name:assoc.name,selected:cat,actual:assoc.designation,shift,scannerName:currentScannerName,hhdId:$('hhdId').value.trim(),hhdDetails:$('hhdDetails').value.trim(),departmentStatus:anotherDept?'Another Department':'Matched Department'};
+  const existing=editingEntryKey?state.entries.find(x=>x._key===editingEntryKey):null;
+  const entry={...(existing||{}),date:d,time:existing?.time||new Date().toISOString(),id,name:assoc.name,selected:cat,actual:assoc.designation,shift,scannerName:existing?.scannerName||currentScannerName,hhdId:$('hhdId').value.trim(),hhdDetails:$('hhdDetails').value.trim(),departmentStatus:anotherDept?'Another Department':'Matched Department'};
+  const frontFile=$('hhdFrontPhoto')?.files?.[0],backFile=$('hhdBackPhoto')?.files?.[0];
   try{
-    await cloudAddEntry(entry);
-    show('✓ Entry synced to Firebase by '+currentScannerName,'ok');
-    if(anotherDept){
-      $('anotherDeptText').innerHTML='<b>'+esc(assoc.name)+'</b> is from <b>'+esc(assoc.designation||'Another Department')+'</b>.<br><br>Entry has been <b>saved successfully</b> in Firebase.';
-      $('anotherDept').style.display='flex';
-    }
+    if((frontFile||backFile)&&!(entry.hhdId||entry.hhdDetails))throw new Error('HHD ID / Details bharein tabhi photos add kar sakte hain.');
+    if(frontFile)entry.hhdFrontPhotoUrl=await uploadHHDPhoto(frontFile,'front',id);
+    if(backFile)entry.hhdBackPhotoUrl=await uploadHHDPhoto(backFile,'back',id);
+    if(editingEntryKey){await cloudUpdateEntry(editingEntryKey,entry);show('✓ Entry updated and synced to Firebase','ok');}
+    else{await cloudAddEntry(entry);show('✓ Entry synced to Firebase by '+currentScannerName,'ok');}
+    if(anotherDept){$('anotherDeptText').innerHTML='<b>'+esc(assoc.name)+'</b> is from <b>'+esc(assoc.designation||'Another Department')+'</b>.<br><br>Entry has been <b>saved successfully</b> in Firebase.';$('anotherDept').style.display='flex';}
     clearEntry(); loadAll(); return true;
   }catch(e){
     if(e&&e.message==='Duplicate Entry'){$('dup').style.display='flex';return false}
     console.error('Firebase write error:',e); setSync('SYNC ERROR',false);
-    show('❌ Firebase me entry save nahi hui. Internet/Rules check karein.','bad'); return false;
+    show('❌ Save nahi hua: '+(e.message||'Internet/Firebase settings check karein.'),'bad'); return false;
   }
 }
-function clearEntry(){$('loginId').value='';$('hhdId').value='';$('hhdDetails').value='';$('hhdBox').style.display='none';$('hhdArrow').textContent='＋';$('person').style.display='none';assoc=null}
+function editEntry(key){
+  const x=state.entries.find(e=>e._key===key);if(!x){show('Entry not found. Refresh karke try karein.','bad');return}
+  editingEntryKey=key;shift=x.shift||'Day';cat=x.selected||CATS[0];setShift(shift);setCat(cat);
+  $('date').value=x.date||$('date').value;$('loginId').value=x.id||'';$('hhdId').value=x.hhdId||'';$('hhdDetails').value=x.hhdDetails||'';
+  $('hhdBox').style.display='block';$('hhdBox').classList.add('hhd-open');$('hhdArrow').textContent='−';lookup();
+  $('hhdFrontPhoto').value='';$('hhdBackPhoto').value='';
+  [['front','hhdFrontPreview','hhdFrontPhoto','hhdFrontPhotoUrl'],['back','hhdBackPreview','hhdBackPhoto','hhdBackPhotoUrl']].forEach(([side,imgId,inputId,urlKey])=>{const img=$(imgId);if(x[urlKey]){img.src=x[urlKey];img.style.display='block'}else{img.src='';img.style.display='none'}});
+  updateHHDPhotosVisibility();$('hhdBox').style.display='block';
+  if($('saveEntryBtn'))$('saveEntryBtn').textContent='✓ Update Entry';show('Editing entry for '+(x.id||''),'ok');window.scrollTo({top:0,behavior:'smooth'});
+}
+function openShiftEnd(key){
+  const x=state.entries.find(e=>e._key===key);if(!x){show('Entry not found. Refresh karke try karein.','bad');return}
+  editingEntryKey=key;
+  $('shiftEndHhdText').innerHTML='<b>Associate:</b> '+esc(x.id)+' — '+esc(x.name)+'<br><b>HHD ID:</b> '+esc(x.hhdId||'—')+'<br><b>HHD Details:</b> '+esc(x.hhdDetails||'—');
+  $('shiftEndRemarks').value=x.shiftEndRemarks||'';
+  $('shiftEndArea').style.display='block';window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+}
+async function saveShiftEnd(){
+  const key=editingEntryKey,x=state.entries.find(e=>e._key===key);if(!key||!x){show('Pehle existing entry par Shift End select karein.','bad');return}
+  const remarks=$('shiftEndRemarks').value.trim();
+  if(!remarks){show('Please Shift End Remarks likhein.','bad');$('shiftEndRemarks').focus();return}
+  if(!cloudReady){show('Firebase LIVE nahi hai. Internet/Firebase connection check karein.','bad');return}
+  try{
+    const updated={...x,shiftEndRemarks:remarks,shiftEndAt:new Date().toISOString(),shiftEndBy:currentScannerName||'User'};
+    await cloudUpdateEntry(key,updated);$('shiftEndArea').style.display='none';show('✓ Shift End Remarks Firebase par save ho gaye hain.','ok');loadAll();
+  }catch(e){console.error(e);show('Shift End save nahi hua: '+(e.message||'Firebase connection check karein.'),'bad')}
+}
+function clearEntry(){
+  editingEntryKey=null;pendingPhotoUrls={front:null,back:null};$('loginId').value='';$('hhdId').value='';$('hhdDetails').value='';
+  ['hhdFrontPhoto','hhdBackPhoto'].forEach(id=>{if($(id))$(id).value=''});
+  ['hhdFrontPreview','hhdBackPreview'].forEach(id=>{if($(id)){ $(id).src='';$(id).style.display='none';}});
+  $('hhdBox').style.display='none';$('hhdBox').classList.remove('hhd-open');$('hhdArrow').textContent='＋';$('hhdPhotosBox').style.display='none';$('person').style.display='none';assoc=null;
+  const saveBtn=$('saveEntryBtn');if(saveBtn)saveBtn.textContent='✓ Save Entry';$('shiftEndArea').style.display='none';
+}
 $('date').onchange=function(){ $('reportDate').value=this.value; loadAll(); };
 $('reportDate').onchange=function(){ $('date').value=this.value; loadAll(); };
 function loadAll(){
@@ -247,7 +318,8 @@ function loadAll(){
   $('s2').textContent=a.filter(x=>x.selected===CATS[1]).length;
   $('s3').textContent=a.filter(x=>x.selected===CATS[2]).length;
   $('s4').textContent=a.filter(x=>x.selected===CATS[3]).length;
-  $('rows').innerHTML=a.slice().reverse().map(x=>'<tr><td>'+new Date(x.time).toLocaleTimeString()+'</td><td><b>'+esc(x.id)+'</b></td><td>'+esc(x.name)+'</td><td>'+esc(x.selected)+'</td><td>'+esc(x.actual)+'</td><td>'+esc(x.shift)+'</td><td>'+esc(x.scannerName||'—')+'</td><td>'+esc(x.hhdId||'—')+'</td><td>'+esc(x.hhdDetails||'—')+'</td></tr>').join('')||'<tr><td colspan="9" class="empty">No entries</td></tr>';
+  const q=($('entrySearch')?.value||'').trim().toLowerCase();const shown=a.slice().reverse().filter(x=>!q||[x.id,x.name,x.selected,x.actual,x.shift,x.scannerName,x.hhdId,x.hhdDetails].some(v=>String(v||'').toLowerCase().includes(q)));
+  $('rows').innerHTML=shown.map(x=>'<tr><td>'+new Date(x.time).toLocaleTimeString()+'</td><td><b>'+esc(x.id)+'</b></td><td>'+esc(x.name)+'</td><td>'+esc(x.selected)+'</td><td>'+esc(x.actual)+'</td><td>'+esc(x.shift)+'</td><td>'+esc(x.scannerName||'—')+'</td><td>'+esc(x.hhdId||'—')+'</td><td>'+esc(x.hhdDetails||'—')+'</td><td>'+(x.hhdFrontPhotoUrl?'<a target="_blank" href="'+esc(x.hhdFrontPhotoUrl)+'">Front</a>':'—')+' / '+(x.hhdBackPhotoUrl?'<a target="_blank" href="'+esc(x.hhdBackPhotoUrl)+'">Back</a>':'—')+'<br><small>Shift End: '+(x.shiftEndFrontPhotoUrl?'<a target="_blank" href="'+esc(x.shiftEndFrontPhotoUrl)+'">Front</a>':'—')+' / '+(x.shiftEndBackPhotoUrl?'<a target="_blank" href="'+esc(x.shiftEndBackPhotoUrl)+'">Back</a>':'—')+'</small></td><td><button class="btn secondary" style="padding:6px 8px;width:auto" onclick="editEntry(\''+esc(x._key||'')+'\')">Edit</button> <button class="btn" style="padding:6px 8px;width:auto;margin-top:4px" onclick="openShiftEnd(\''+esc(x._key||'')+'\')">Shift End</button></td></tr>').join('')||'<tr><td colspan="11" class="empty">No matching entries</td></tr>';
   if(userRole==='admin')loadMaster();
 }
 
@@ -365,5 +437,14 @@ if(hhdBtn){hhdBtn.addEventListener('click',function(ev){ev.preventDefault();ev.s
 applyShiftTheme();
 setTimeout(initCloud,250);
 function closeDup(){$('dup').style.display='none';clearEntry()}function closeAnotherDept(){$('anotherDept').style.display='none'}function show(t,c){$('msg').textContent=t;$('msg').className='msg '+c}function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}persist();
+function toggleTodayEntries(){
+  const panel=document.getElementById('todayEntriesPanel');
+  const btn=document.getElementById('toggleTodayEntries');
+  if(!panel || !btn){ console.error('Today Entries panel/button missing'); return; }
+  const isHidden = panel.style.display === 'none' || getComputedStyle(panel).display === 'none';
+  panel.style.display = isHidden ? 'block' : 'none';
+  btn.textContent = (isHidden ? '－' : '＋') + " Today's Entries (" + (isHidden ? 'Hide' : 'Show') + ')';
+  if(isHidden){ try { loadAll(); } catch(err) { console.error('Unable to load entries', err); } }
+}
 </script><script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
 </body></html>
