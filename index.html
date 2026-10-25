@@ -45,7 +45,7 @@ body.night-theme .login{background:#0b1220}
 </div><div id="hhdPhotosBox" style="display:none;margin-top:10px"><div class="mini" style="margin-bottom:7px">HHD ID / Details filled hone par optional photos add karein. Dono photos mandatory nahi hain.</div><div class="grid"><div><label class="label">A. Front Side Photo (Optional)</label><input id="hhdFrontPhoto" type="file" accept="image/*" capture="environment" onchange="previewHHDPhoto('front')" style="padding:8px;font-size:12px"><img id="hhdFrontPreview" style="display:none;width:100%;max-height:130px;object-fit:contain;margin-top:6px;border-radius:8px"></div><div><label class="label">B. Back Side Photo (Optional)</label><input id="hhdBackPhoto" type="file" accept="image/*" capture="environment" onchange="previewHHDPhoto('back')" style="padding:8px;font-size:12px"><img id="hhdBackPreview" style="display:none;width:100%;max-height:130px;object-fit:contain;margin-top:6px;border-radius:8px"></div></div></div></div></div>
 <div id="person" class="person"></div><div class="actions"><button id="saveEntryBtn" class="btn" onclick="saveEntry()">✓ Save Entry</button><button class="btn secondary" onclick="clearEntry()">Clear</button></div><div id="msg" class="msg"></div><div id="shiftEndArea" style="display:none;margin-top:12px;border:1px solid #cbd5e1;border-radius:10px;padding:12px;background:#f8fafc"><h3 style="margin:0 0 8px">🌙 Shift End</h3><div class="mini" id="shiftEndHhdText">HHD details</div><div style="margin-top:10px"><label class="label" for="shiftEndRemarks">Shift End Remarks</label><textarea id="shiftEndRemarks" rows="3" placeholder="Shift end remarks yahan likhein..." style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;resize:vertical"></textarea></div><div class="actions"><button class="btn" onclick="saveShiftEnd()">✓ Save Shift End</button><button class="btn secondary" onclick="$('shiftEndArea').style.display='none'">Cancel</button></div></div></div>
 <div class="card daily-summary-card"><h3>Daily Summary</h3><div class="stats daily-summary-stats"><div class="stat"><span>TOTAL</span><b id="total">0</b></div><div class="stat"><span>QUALITY SUPERVISOR</span><b id="s1">0</b></div><div class="stat"><span>SEGREGATION</span><b id="s2">0</b></div><div class="stat"><span>QUALITY ASSOCIATE</span><b id="s3">0</b></div><div class="stat"><span>QUALITY DEO</span><b id="s4">0</b></div></div></div>
-<div class="card"><button id="toggleTodayEntries" type="button" class="btn secondary" style="width:100%;text-align:left" onclick="toggleTodayEntries()">＋ Today's Entries (Show)</button><div id="todayEntriesPanel" style="display:none;margin-top:10px"><label class="label" for="entrySearch">🔎 Search Entry</label><input id="entrySearch" type="search" placeholder="Emp ID, name, HHD ID, details or scanner name" oninput="loadAll()" style="margin:5px 0 10px;width:100%;box-sizing:border-box"><div class="tablewrap"><table><thead><tr><th>Time</th><th>Emp ID</th><th>Name</th><th>Selected</th><th>Actual Designation</th><th>Shift</th><th>Scanner</th><th>HHD ID</th><th>HHD Details</th><th>HHD Photos</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table></div></div></div>
+<div class="card"><button id="toggleTodayEntries" type="button" class="btn secondary" style="width:100%;text-align:left" onclick="toggleTodayEntries()">＋ Today's Entries (Show)</button><div id="todayEntriesPanel" style="display:none;margin-top:10px"><label class="label" for="entrySearch">🔎 Search Entry</label><input id="entrySearch" type="search" placeholder="Emp ID, name, HHD ID, details or scanner name" oninput="loadAll()" style="margin:5px 0 10px;width:100%;box-sizing:border-box"><div class="tablewrap"><table><thead><tr><th>Time</th><th>Emp ID</th><th>Name</th><th>Selected</th><th>Actual Designation</th><th>Shift</th><th>Scanner</th><th>HHD ID</th><th>HHD Details</th><th>HHD Photos</th><th>Shift End Time</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table></div></div></div>
 <div id="adminArea" class="admin"><div class="card">
 <div class="tabs">
 <button class="tab on" onclick="tab('dashboard',this)">Dashboard</button>
@@ -177,12 +177,36 @@ async function cloudUpdateEntry(key,entry){
 }
 async function uploadHHDPhoto(file,side,entryId){
   if(!file)return null;
-  if(!window.firebase||!firebase.storage)throw new Error('Firebase Storage SDK is unavailable');
-  const storage=firebase.storage();
-  const safe=String(entryId||'hhd').replace(/[^a-zA-Z0-9_-]/g,'_');
-  const path='associate_daily_scan_v4/hhdPhotos/'+safe+'/'+side+'_'+Date.now()+'_'+file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
-  const snap=await storage.ref(path).put(file);
-  return await snap.ref.getDownloadURL();
+  if(!file.type || !file.type.startsWith('image/'))throw new Error('Please select a valid image file.');
+  // Compress photos in the browser and store the small data URL in Realtime Database.
+  // This avoids requiring Firebase Cloud Storage / Blaze for photo uploads.
+  const imageUrl=await new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onerror=()=>reject(new Error('Photo read nahi ho paayi. Dobara select karein.'));
+    reader.onload=()=>{
+      const img=new Image();
+      img.onerror=()=>reject(new Error('Photo open nahi ho paayi. JPG/PNG image try karein.'));
+      img.onload=()=>{
+        try{
+          const maxSide=1280, scale=Math.min(1,maxSide/Math.max(img.naturalWidth,img.naturalHeight));
+          const canvas=document.createElement('canvas');
+          canvas.width=Math.max(1,Math.round(img.naturalWidth*scale));
+          canvas.height=Math.max(1,Math.round(img.naturalHeight*scale));
+          const ctx=canvas.getContext('2d');
+          if(!ctx)throw new Error('Photo compression supported nahi hai.');
+          ctx.fillStyle='#ffffff';ctx.fillRect(0,0,canvas.width,canvas.height);
+          ctx.drawImage(img,0,0,canvas.width,canvas.height);
+          let quality=0.68, data=canvas.toDataURL('image/jpeg',quality);
+          while(data.length>420000 && quality>0.38){quality-=0.08;data=canvas.toDataURL('image/jpeg',quality)}
+          if(data.length>500000)throw new Error('Compressed photo abhi bhi badi hai. Chhoti photo select karein.');
+          resolve(data);
+        }catch(e){reject(e)}
+      };
+      img.src=reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+  return imageUrl;
 }
 function updateHHDPhotosVisibility(){
   const showPhotos=!!(($('hhdId')?.value||'').trim()||($('hhdDetails')?.value||'').trim());
@@ -193,7 +217,7 @@ function previewHHDPhoto(side){
   const input=$(side==='front'?'hhdFrontPhoto':'hhdBackPhoto'),img=$(side==='front'?'hhdFrontPreview':'hhdBackPreview');
   const file=input?.files?.[0];if(!file||!img)return;
   if(!file.type.startsWith('image/')){alert('Please select an image file.');input.value='';return}
-  if(file.size>5*1024*1024){alert('Photo 5 MB se chhoti honi chahiye.');input.value='';return}
+  if(file.size>12*1024*1024){alert('Photo 12 MB se chhoti honi chahiye.');input.value='';return}
   img.src=URL.createObjectURL(file);img.style.display='block';
 }
 
@@ -261,8 +285,10 @@ async function saveEntry(){
   const existing=editingEntryKey?state.entries.find(x=>x._key===editingEntryKey):null;
   const entry={...(existing||{}),date:d,time:existing?.time||new Date().toISOString(),id,name:assoc.name,selected:cat,actual:assoc.designation,shift,scannerName:existing?.scannerName||currentScannerName,hhdId:$('hhdId').value.trim(),hhdDetails:$('hhdDetails').value.trim(),departmentStatus:anotherDept?'Another Department':'Matched Department'};
   const frontFile=$('hhdFrontPhoto')?.files?.[0],backFile=$('hhdBackPhoto')?.files?.[0];
+  const saveBtn=$('saveEntryBtn');
   try{
     if((frontFile||backFile)&&!(entry.hhdId||entry.hhdDetails))throw new Error('HHD ID / Details bharein tabhi photos add kar sakte hain.');
+    if(saveBtn){saveBtn.disabled=true;saveBtn.textContent=(frontFile||backFile)?'Photo compress ho rahi hai…':'Saving…'}
     if(frontFile)entry.hhdFrontPhotoUrl=await uploadHHDPhoto(frontFile,'front',id);
     if(backFile)entry.hhdBackPhotoUrl=await uploadHHDPhoto(backFile,'back',id);
     if(editingEntryKey){await cloudUpdateEntry(editingEntryKey,entry);show('✓ Entry updated and synced to Firebase','ok');}
@@ -271,8 +297,10 @@ async function saveEntry(){
     clearEntry(); loadAll(); return true;
   }catch(e){
     if(e&&e.message==='Duplicate Entry'){$('dup').style.display='flex';return false}
-    console.error('Firebase write error:',e); setSync('SYNC ERROR',false);
+    console.error('Firebase write error:',e);
     show('❌ Save nahi hua: '+(e.message||'Internet/Firebase settings check karein.'),'bad'); return false;
+  } finally {
+    if(saveBtn){saveBtn.disabled=false;saveBtn.textContent=editingEntryKey?'✓ Update Entry':'✓ Save Entry'}
   }
 }
 function editEntry(key){
@@ -319,7 +347,7 @@ function loadAll(){
   $('s3').textContent=a.filter(x=>x.selected===CATS[2]).length;
   $('s4').textContent=a.filter(x=>x.selected===CATS[3]).length;
   const q=($('entrySearch')?.value||'').trim().toLowerCase();const shown=a.slice().reverse().filter(x=>!q||[x.id,x.name,x.selected,x.actual,x.shift,x.scannerName,x.hhdId,x.hhdDetails].some(v=>String(v||'').toLowerCase().includes(q)));
-  $('rows').innerHTML=shown.map(x=>'<tr><td>'+new Date(x.time).toLocaleTimeString()+'</td><td><b>'+esc(x.id)+'</b></td><td>'+esc(x.name)+'</td><td>'+esc(x.selected)+'</td><td>'+esc(x.actual)+'</td><td>'+esc(x.shift)+'</td><td>'+esc(x.scannerName||'—')+'</td><td>'+esc(x.hhdId||'—')+'</td><td>'+esc(x.hhdDetails||'—')+'</td><td>'+(x.hhdFrontPhotoUrl?'<a target="_blank" href="'+esc(x.hhdFrontPhotoUrl)+'">Front</a>':'—')+' / '+(x.hhdBackPhotoUrl?'<a target="_blank" href="'+esc(x.hhdBackPhotoUrl)+'">Back</a>':'—')+'<br><small>Shift End: '+(x.shiftEndFrontPhotoUrl?'<a target="_blank" href="'+esc(x.shiftEndFrontPhotoUrl)+'">Front</a>':'—')+' / '+(x.shiftEndBackPhotoUrl?'<a target="_blank" href="'+esc(x.shiftEndBackPhotoUrl)+'">Back</a>':'—')+'</small></td><td><button class="btn secondary" style="padding:6px 8px;width:auto" onclick="editEntry(\''+esc(x._key||'')+'\')">Edit</button> <button class="btn" style="padding:6px 8px;width:auto;margin-top:4px" onclick="openShiftEnd(\''+esc(x._key||'')+'\')">Shift End</button></td></tr>').join('')||'<tr><td colspan="11" class="empty">No matching entries</td></tr>';
+  $('rows').innerHTML=shown.map(x=>'<tr><td>'+new Date(x.time).toLocaleTimeString()+'</td><td><b>'+esc(x.id)+'</b></td><td>'+esc(x.name)+'</td><td>'+esc(x.selected)+'</td><td>'+esc(x.actual)+'</td><td>'+esc(x.shift)+'</td><td>'+esc(x.scannerName||'—')+'</td><td>'+esc(x.hhdId||'—')+'</td><td>'+esc(x.hhdDetails||'—')+'</td><td>'+(x.hhdFrontPhotoUrl?'<a target="_blank" href="'+esc(x.hhdFrontPhotoUrl)+'">Front</a>':'—')+' / '+(x.hhdBackPhotoUrl?'<a target="_blank" href="'+esc(x.hhdBackPhotoUrl)+'">Back</a>':'—')+'<br><small>Shift End: '+(x.shiftEndFrontPhotoUrl?'<a target="_blank" href="'+esc(x.shiftEndFrontPhotoUrl)+'">Front</a>':'—')+' / '+(x.shiftEndBackPhotoUrl?'<a target="_blank" href="'+esc(x.shiftEndBackPhotoUrl)+'">Back</a>':'—')+'</small></td><td>'+(x.shiftEndAt?new Date(x.shiftEndAt).toLocaleString():'—')+'</td><td><button class="btn secondary" style="padding:6px 8px;width:auto" onclick="editEntry(\''+esc(x._key||'')+'\')">Edit</button> <button class="btn" style="padding:6px 8px;width:auto;margin-top:4px" onclick="openShiftEnd(\''+esc(x._key||'')+'\')">Shift End</button></td></tr>').join('')||'<tr><td colspan="12" class="empty">No matching entries</td></tr>';
   if(userRole==='admin')loadMaster();
 }
 
